@@ -86,6 +86,71 @@ nav .links a:hover{color:var(--ink)}
 .ph{background:repeating-linear-gradient(45deg,#EFF1F4,#EFF1F4 10px,#F6F7F9 10px,#F6F7F9 20px);
   border:1.5px dashed #CBD0D8;border-radius:14px;display:flex;align-items:center;justify-content:center;
   min-height:15rem;font-size:.8rem;color:var(--faint);font-weight:700;text-align:center;line-height:1.7;padding:1rem}
+
+/* ── 재구성 목업 (실제 화면의 구조만 재현 — 기밀 없음) ── */
+.mock{background:#F4F5F7;border:1px solid var(--line);border-radius:14px;min-height:15rem;
+  padding:.9rem 1rem;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.mock .cap{position:absolute;bottom:.5rem;right:.8rem;font-size:.58rem;color:var(--faint);font-weight:700}
+.m-top{display:flex;align-items:center;gap:.45rem;font-size:.62rem;font-weight:800;color:var(--ink)}
+.m-stno{background:var(--ink);color:#fff;border-radius:6px;padding:.08rem .45rem;font-size:.56rem}
+.m-cnt{margin-left:auto;color:var(--faint);font-weight:700}
+.m-bar{height:3.5px;border-radius:99px;background:#E5E7EB;margin:.45rem 0 .6rem}
+.m-bar i{display:block;height:100%;width:31%;background:var(--ink);border-radius:99px}
+.m-body{flex:1;display:grid;grid-template-columns:1fr 1.1fr;gap:.55rem;filter:blur(.6px);opacity:.55}
+.m-img{background:#fff;border:1px solid var(--line);border-radius:8px;position:relative;overflow:hidden}
+.m-img::after{content:'';position:absolute;inset:18% 14%;border-radius:6px;
+  background:linear-gradient(135deg,#DDE3EA 0%,#C7D0DA 45%,#DDE3EA 100%)}
+.m-lines{display:flex;flex-direction:column;gap:.4rem;padding-top:.2rem}
+.m-lines i{display:block;height:.42rem;border-radius:99px;background:#E2E5EA}
+.m-modal{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:76%;background:#fff;
+  border:2px solid var(--sol);border-radius:11px;box-shadow:0 14px 34px rgba(0,0,0,.18);overflow:hidden;z-index:3}
+.m-mh{background:#FFF7DF;border-bottom:1px solid #F0D488;color:var(--solb);font-size:.6rem;font-weight:900;padding:.35rem .7rem}
+.m-lead{font-size:.72rem;font-weight:800;color:var(--ink);padding:.55rem .75rem .1rem;line-height:1.5;
+  border-left:.3rem solid var(--sol);margin:.45rem .7rem 0}
+.m-q{font-size:.6rem;font-weight:800;color:var(--ink);padding:.5rem .8rem .15rem;border-top:1px solid var(--line);margin-top:.55rem}
+.m-btns{display:flex;gap:.4rem;padding:.45rem .7rem .6rem}
+.m-btns span{flex:1;text-align:center;font-size:.6rem;font-weight:800;border-radius:7px;padding:.3rem;background:#EEF0F4;color:var(--dim)}
+.m-btns .y{background:var(--ink);color:#fff}
+.m-foot{display:flex;align-items:center;gap:.5rem;margin-top:.55rem}
+.m-foot .ghostb{font-size:.58rem;font-weight:800;background:#fff;border:1px solid var(--line);border-radius:7px;padding:.28rem .7rem;color:var(--dim)}
+.m-foot .lockmsg{font-size:.54rem;color:var(--solb);font-weight:700;flex:1;text-align:center}
+.m-foot .nextb{font-size:.58rem;font-weight:800;border-radius:7px;padding:.28rem .8rem;background:#EDEFF3;color:#8A919C}
+/* 구조도 */
+.m-flow{flex:1;display:grid;grid-template-columns:1fr 1.1rem 1fr 1.1rem 1fr;gap:0;align-items:center}
+.m-node{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:.55rem .55rem .5rem;text-align:center}
+.m-node .t{font-size:.62rem;font-weight:900;color:var(--ink)}
+.m-node .mini{margin-top:.4rem;display:flex;flex-direction:column;gap:.25rem}
+.m-node .mini i{display:block;height:.35rem;border-radius:99px;background:#E8EAEE}
+.m-node .mini i.hl{background:var(--sol);width:70%;margin:0 auto}
+.m-node .mini .fld{height:.7rem;border:1px solid #C9D4E4;border-radius:4px;background:#F7F9FE}
+.m-node .mini .doc{height:2.1rem;border:1px solid var(--line);border-radius:4px;background:#fff;position:relative}
+.m-node .mini .doc::after{content:'✓';position:absolute;right:.2rem;bottom:.05rem;color:var(--ok);font-size:.6rem;font-weight:900}
+.m-node .b{font-size:.5rem;color:var(--dim);margin-top:.3rem;line-height:1.4}
+.m-arr2{color:#C3C9D2;font-weight:900;font-size:.85rem;text-align:center}
+.m-node.g{border-color:#BEE8D4;background:var(--okbg)}
+/* 합성 비교 (SVG 사용) */
+.m-cmp{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.m-half{background:#fff;border:1px solid var(--line);border-radius:9px;padding:.4rem;display:flex;flex-direction:column}
+.m-half .h6{font-size:.56rem;font-weight:900;color:var(--dim);text-align:center;margin-bottom:.25rem}
+.m-half svg{flex:1;width:100%;border-radius:5px}
+/* 위저드 */
+.m-wiz{flex:1;display:grid;grid-template-columns:5.4rem 1fr;gap:.55rem}
+.m-wsteps{display:flex;flex-direction:column;gap:.4rem}
+.m-ws{display:flex;align-items:center;gap:.35rem;font-size:.54rem;font-weight:800;color:var(--dim);
+  background:#fff;border:1px solid var(--line);border-radius:8px;padding:.32rem .45rem}
+.m-ws .n7{width:.95rem;height:.95rem;border-radius:50%;background:#E5E7EB;color:var(--dim);font-size:.5rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex:none}
+.m-ws.done .n7{background:var(--ok);color:#fff}
+.m-ws.cur{border-color:var(--ink);color:var(--ink)}
+.m-ws.cur .n7{background:var(--ink);color:#fff}
+.m-wmain{background:#fff;border:1px solid var(--line);border-radius:9px;padding:.5rem .6rem;display:flex;flex-direction:column;gap:.4rem}
+.m-lv{display:flex;gap:.3rem}
+.m-lv span{flex:1;text-align:center;font-size:.5rem;font-weight:800;border-radius:5px;padding:.18rem 0;background:#F1F3F6;color:var(--dim)}
+.m-lv span.on7{background:var(--ink);color:#fff}
+.m-sl{display:flex;align-items:center;gap:.4rem;font-size:.52rem;color:var(--dim);font-weight:700}
+.m-sl .tr7{flex:1;height:3px;border-radius:99px;background:#E5E7EB;position:relative}
+.m-sl .tr7 i{position:absolute;left:58%;top:50%;transform:translate(-50%,-50%);width:.6rem;height:.6rem;border-radius:50%;background:var(--ink)}
+.m-go{margin-top:auto;align-self:flex-end;font-size:.56rem;font-weight:800;background:var(--ink);color:#fff;border-radius:7px;padding:.3rem .9rem}
 .quote{margin-top:1.6rem;background:var(--bluebg);border-left:4px solid var(--blue);border-radius:8px;
   padding:1rem 1.3rem;font-size:.92rem;line-height:1.85;color:var(--ink);font-weight:700}
 .chips{margin-top:1.4rem}
@@ -207,8 +272,39 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
     <div class="res reveal"><div class="v">6중 검증</div><div class="d">전수 대조 · 자기 검증 · 오류 주입 · 재현성 · 감사 추적 · 자동 백업</div></div>
   </div>
   <div class="shots">
-    <div class="ph reveal">화면 ① — 게이트 팝업 (확인 전 진행 잠금)<br>※ 재구성 목업으로 교체 예정</div>
-    <div class="ph reveal">화면 ② — 조립→시험→기록 통합 구조도</div>
+    <div class="mock reveal">
+      <div class="m-top"><span class="m-stno">STEP 12</span><span>부품 조립</span><span class="m-cnt">12 / 39</span></div>
+      <div class="m-bar"><i></i></div>
+      <div class="m-body">
+        <div class="m-img"></div>
+        <div class="m-lines"><i style="width:92%"></i><i style="width:78%"></i><i style="width:85%"></i><i style="width:55%"></i></div>
+      </div>
+      <div class="m-modal">
+        <div class="m-mh">! &nbsp;주의 — 진행 전 확인</div>
+        <div class="m-lead">부품의 방향을 확인한 후 체결한다</div>
+        <div class="m-q">위 내용을 확인했습니까?</div>
+        <div class="m-btns"><span>아니오</span><span class="y">예</span></div>
+      </div>
+      <div class="m-foot"><span class="ghostb">← 이전</span><span class="lockmsg">🔒 확인 항목을 완료하면 진행됩니다</span><span class="nextb">다음 →</span></div>
+      <span class="cap">게이트 — 확인 전 진행 잠금 (재구성 목업)</span>
+    </div>
+    <div class="mock reveal" style="padding:1rem .9rem">
+      <div class="m-top" style="justify-content:center"><span>한 화면으로 이어지는 세 단계</span></div>
+      <div class="m-flow">
+        <div class="m-node"><div class="t">① 조립</div>
+          <div class="mini"><i></i><i class="hl"></i><i style="width:80%"></i></div>
+          <div class="b">클릭 진행<br>+ 게이트 잠금</div></div>
+        <div class="m-arr2">→</div>
+        <div class="m-node"><div class="t">② 시험</div>
+          <div class="mini"><i style="width:85%"></i><span class="fld"></span><span class="fld"></span></div>
+          <div class="b">항목 진행<br>+ 결과·S/N 기입</div></div>
+        <div class="m-arr2">→</div>
+        <div class="m-node g"><div class="t">③ 기록</div>
+          <div class="mini"><span class="doc"></span></div>
+          <div class="b">공식 양식 자동 채움<br>→ PDF 출력·서명</div></div>
+      </div>
+      <span class="cap">기입값이 기록 양식으로 자동 반영 (재구성 목업)</span>
+    </div>
   </div>
   <div class="quote reveal">"도구가 틀렸는지 스스로 검사하게 만들었습니다 — 일부러 오류를 주입해서,
     검증기가 정확히 그 2건만 잡아내고 생성을 차단하는 것까지 확인했습니다."</div>
@@ -249,8 +345,71 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
     <div class="res reveal"><div class="v">844 → 213</div><div class="d">패치 라이브러리를 모양 필터로 정제 — 비실물형 자동 차단</div></div>
   </div>
   <div class="shots">
-    <div class="ph reveal">화면 ③ — 합성 결과 vs 실물 비교<br>※ 재구성 목업으로 교체 예정</div>
-    <div class="ph reveal">화면 ④ — 3단계 위저드 GUI</div>
+    <div class="mock reveal">
+      <div class="m-cmp">
+        <div class="m-half"><div class="h6">실물 결함 (예시 도식)</div>
+          <svg viewBox="0 0 160 96" preserveAspectRatio="none">
+            <defs><filter id="gl"><feGaussianBlur stdDeviation="0.7"/></filter></defs>
+            <rect x="2" y="6" width="156" height="84" rx="8" fill="#22303F"/>
+            <g>
+              <rect x="12" y="18" width="18" height="60" rx="5" fill="#35516B"/>
+              <rect x="36" y="16" width="18" height="64" rx="5" fill="#3A5878"/>
+              <rect x="60" y="15" width="18" height="66" rx="5" fill="#35516B"/>
+              <rect x="84" y="15" width="18" height="66" rx="5" fill="#3A5878"/>
+              <rect x="108" y="16" width="18" height="64" rx="5" fill="#35516B"/>
+              <rect x="132" y="18" width="18" height="60" rx="5" fill="#3A5878"/>
+            </g>
+            <g filter="url(#gl)" stroke="#FFFFFF" stroke-linecap="round">
+              <line x1="64" y1="30" x2="72" y2="26" stroke-width="2.2" opacity=".95"/>
+              <line x1="88" y1="34" x2="97" y2="31" stroke-width="1.6" opacity=".8"/>
+              <line x1="41" y1="28" x2="46" y2="26" stroke-width="1.3" opacity=".6"/>
+            </g>
+          </svg></div>
+        <div class="m-half"><div class="h6">합성 결과 + GT 라벨 자동</div>
+          <svg viewBox="0 0 160 96" preserveAspectRatio="none">
+            <defs><filter id="gl2"><feGaussianBlur stdDeviation="0.7"/></filter></defs>
+            <rect x="2" y="6" width="156" height="84" rx="8" fill="#22303F"/>
+            <g>
+              <rect x="12" y="18" width="18" height="60" rx="5" fill="#35516B"/>
+              <rect x="36" y="16" width="18" height="64" rx="5" fill="#3A5878"/>
+              <rect x="60" y="15" width="18" height="66" rx="5" fill="#35516B"/>
+              <rect x="84" y="15" width="18" height="66" rx="5" fill="#3A5878"/>
+              <rect x="108" y="16" width="18" height="64" rx="5" fill="#35516B"/>
+              <rect x="132" y="18" width="18" height="60" rx="5" fill="#3A5878"/>
+            </g>
+            <g filter="url(#gl2)" stroke="#FFFFFF" stroke-linecap="round">
+              <line x1="40" y1="32" x2="48" y2="28" stroke-width="2.1" opacity=".95"/>
+              <line x1="90" y1="27" x2="98" y2="24" stroke-width="1.8" opacity=".85"/>
+              <line x1="113" y1="36" x2="120" y2="33" stroke-width="1.4" opacity=".7"/>
+            </g>
+            <g fill="none" stroke="#FDB813" stroke-width="1.1" stroke-dasharray="3 2">
+              <rect x="36" y="23" width="17" height="13" rx="1"/>
+              <rect x="86" y="19" width="16" height="12" rx="1"/>
+              <rect x="109" y="29" width="15" height="11" rx="1"/>
+            </g>
+          </svg></div>
+      </div>
+      <span class="cap">빛반사 결함 합성 — 위치 기반 bbox 자동 생성 (재구성 도식)</span>
+    </div>
+    <div class="mock reveal">
+      <div class="m-wiz">
+        <div class="m-wsteps">
+          <div class="m-ws done"><span class="n7">✓</span>마스크 정합</div>
+          <div class="m-ws cur"><span class="n7">2</span>분포 설정</div>
+          <div class="m-ws"><span class="n7">3</span>배치 생성</div>
+        </div>
+        <div class="m-wmain">
+          <div style="font-size:.56rem;font-weight:900;color:var(--ink)">결함 강도 분포</div>
+          <div class="m-lv"><span>L1</span><span>L2</span><span class="on7">L3</span><span>L4</span><span>L5</span></div>
+          <div class="m-sl"><span>총량</span><span class="tr7"><i></i></span><span class="mono">1,000</span></div>
+          <div class="m-sl"><span>강도</span><span class="tr7"><i style="left:42%"></i></span><span class="mono">moderate</span></div>
+          <div style="font-size:.52rem;color:var(--dim);line-height:1.6;background:#F7F8FA;border-radius:6px;padding:.3rem .5rem">
+            미리보기 = 실제 출력과 같은 엔진 — 본 것이 곧 결과</div>
+          <span class="m-go">생성 시작 →</span>
+        </div>
+      </div>
+      <span class="cap">3단계 위저드 GUI (재구성 목업)</span>
+    </div>
   </div>
   <div class="quote reveal">"정답이 정해진 문제가 아니라 실물에 계속 수렴시키는 과제였습니다 —
     매 버전 실물 사진과 나란히 놓고, 무엇이 '가짜처럼 보이게 하는지'를 원인 단위로 좁혀갔습니다."</div>
