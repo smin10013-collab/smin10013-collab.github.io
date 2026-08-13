@@ -190,7 +190,8 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 
 @media (max-width:820px){
   .stats,.results{grid-template-columns:1fr 1fr}
-  .ways{grid-template-columns:1fr}
+  .ways{grid-template-columns:1fr !important}
+  .aboutgrid{grid-template-columns:1fr !important}
   .ba{grid-template-columns:1fr}
   .ba .ar{transform:rotate(90deg);padding:.1rem 0}
   .shots,.skgrid{grid-template-columns:1fr}
@@ -203,11 +204,12 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 <nav><div class="in">
   <a class="logo" href="#top">SOOMIN<span>.</span>KIM</a>
   <div class="links">
-    <a href="#about">About</a>
-    <a href="#p1">Project 01</a>
-    <a href="#p2">Project 02</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">소개</a>
+    <a href="#p1">프로젝트</a>
+    <a href="#edu">교육·활동</a>
+    <a href="#cert">자격·어학</a>
+    <a href="#skills">스킬</a>
+    <a href="#contact">연락처</a>
   </div>
 </div></nav>
 
@@ -227,7 +229,22 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 
 <!-- About -->
 <section id="about"><div class="container">
-  <div class="sh"><span class="no mono">00</span><h2>일하는 방식</h2><span class="s">How I Work</span></div>
+  <div class="sh"><span class="no mono">01</span><h2>자기소개</h2><span class="s">About Me</span></div>
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:start;margin-bottom:2.2rem" class="aboutgrid">
+    <div class="reveal" style="font-size:.92rem;line-height:1.95">
+      전자공학을 전공하며 회로·반도체 소자와 공정·마이크로프로세서·임베디드 시스템의 기초를 쌓았고,
+      의료·진단장비 제조기업의 생산기술에서 자동 핵산추출 장비의 <b>BOM·SOP·제조문서와 조립·시험 공정</b>을 담당하고 있습니다.<br><br>
+      현장에서 반복되는 실수와 데이터 부족이라는 문제를 만나자, 기다리는 대신 <b>도구를 직접 만들어 해결</b>했습니다 —
+      학부 시절 하드웨어 디버깅에서 익힌 "입력 → 배선 → 제어 → 출력 순으로 원인을 좁히는 습관"이
+      지금의 검증 중심 개발 방식으로 이어졌습니다.
+    </div>
+    <div class="tl">
+      <div class="tr reveal"><span class="w mono">2021–2026</span><span class="dt"><i></i></span><span class="tx"><b>상명대학교 전자공학과</b> — 학사 졸업 (GPA 3.75/4.5)</span></div>
+      <div class="tr reveal"><span class="w mono">2022</span><span class="dt"><i></i></span><span class="tx">GDSC — 앱 UX/UI 리디자인 프로젝트</span></div>
+      <div class="tr reveal"><span class="w mono">2025</span><span class="dt"><i></i></span><span class="tx">알약 디스펜서 제작 · 반도체 8대 공정 교육 · OPIc IH</span></div>
+      <div class="tr reveal"><span class="w mono">2026.04–</span><span class="dt"><i></i></span><span class="tx"><b>프로메가바이오시스템스 · 생산기술</b> — 공정 디지털 도구 2종 단독 개발·배포</span></div>
+    </div>
+  </div>
   <div class="ways">
     <div class="way reveal"><div class="n mono">01</div><div class="t">문제를 데이터에서 찾는다</div>
       <div class="d">품질 기록(부적합·시정조치 이력)에서 반복 실수를, 데이터 부족 현황에서 합성의 필요를 —
@@ -243,7 +260,7 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 
 <!-- Project 01 -->
 <section class="project" id="p1"><div class="container">
-  <div class="sh"><span class="no mono">01</span><h2>디지털 작업지도서</h2><span class="s">제조 공정 DX · 2026 · 단독 수행</span></div>
+  <div class="sh"><span class="no mono">02</span><h2>디지털 작업지도서</h2><span class="s">공정 DX · 2026 · 단독 수행</span></div>
   <div class="pband reveal">
     <div class="k mono">Case Study · Question</div>
     <h3>"작업 실수를 사람의 주의력이 아니라<br>구조로 막을 수 없을까?"</h3>
@@ -316,7 +333,7 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 
 <!-- Project 02 -->
 <section class="project" id="p2"><div class="container">
-  <div class="sh"><span class="no mono">02</span><h2>빛반사 결함 합성기</h2><span class="s">머신비전 · 합성 데이터 · 단독 수행</span></div>
+  <div class="sh"><span class="no mono">03</span><h2>빛반사 결함 합성기</h2><span class="s">머신비전 · 합성 데이터 · 단독 수행</span></div>
   <div class="pband reveal">
     <div class="k mono">Case Study · Question</div>
     <h3>"결함 사진이 21장뿐인데,<br>결함 검출 AI를 어떻게 학습시키지?"</h3>
@@ -421,24 +438,44 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
 
 <!-- Other Projects -->
 <section class="project" id="etc"><div class="container">
-  <div class="sh"><span class="no mono">03</span><h2>그 밖의 프로젝트</h2><span class="s">Embedded & Design</span></div>
-  <div class="ways">
+  <div class="sh"><span class="no mono">04</span><h2>그 밖의 프로젝트</h2><span class="s">Embedded</span></div>
+  <div class="ways" style="grid-template-columns:1fr">
     <div class="way reveal"><div class="n mono">2025</div><div class="t">Raspberry Pi 스마트 알약 디스펜서</div>
-      <div class="d">IR 센서로 약 상태를 감지하고 서보모터·알람을 연동해 정해진 시간에 배출.
+      <div class="d">IR 센서로 약 상태를 감지하고 서보모터·알람을 연동해 정해진 시간에 배출하는 임베디드 프로젝트.
         센서 인식·모터 동작이 불안정할 때 <b>입력 신호 → 배선 → 제어 로직 → 출력 동작</b> 순으로 원인을 좁혀가는
-        하드웨어 디버깅 방식을 체득 — 지금의 "원인 단위로 분해하는" 문제 해결 습관의 출발점.</div></div>
-    <div class="way reveal"><div class="n mono">2022</div><div class="t">앱 UX/UI 리디자인 — GDSC</div>
-      <div class="d">Figma로 기존 화면의 사용자 흐름·불편 요소를 분석하고 정보 구조를 재설계.
-        팀 협업으로 사용자 관점의 개선안을 도출 — 디지털 작업지도서의 <b>현장 UX 설계(게이트·자동 진행)</b>로 이어진 감각.</div></div>
-    <div class="way reveal"><div class="n mono">2025</div><div class="t">반도체 8대 공정 교육 — 서울대</div>
+        하드웨어 디버깅 방식을 체득 — 지금의 "원인 단위로 분해하는" 문제 해결 습관의 출발점이 된 프로젝트.</div></div>
+  </div>
+</div></section>
+
+<!-- Education & Activities -->
+<section class="project" id="edu"><div class="container">
+  <div class="sh"><span class="no mono">05</span><h2>교육 & 활동</h2><span class="s">Education & Activities</span></div>
+  <div class="ways" style="grid-template-columns:1fr 1fr">
+    <div class="way reveal"><div class="n mono">2025.08 · 서울대학교</div><div class="t">반도체 8대 공정 교육 이수</div>
       <div class="d">공정별 원리와 목적, 공정 조건 변화가 소자 특성·수율·품질에 미치는 영향을 실습 중심으로 학습 —
-        제조 공정을 <b>변수와 품질의 관계</b>로 보는 시각.</div></div>
+        제조 공정을 <b>변수와 품질의 관계</b>로 보는 시각을 얻었습니다.</div></div>
+    <div class="way reveal"><div class="n mono">2022 · GDSC 상명대</div><div class="t">앱 UX/UI 리디자인 프로젝트</div>
+      <div class="d">Figma로 기존 화면의 사용자 흐름·불편 요소를 분석하고 정보 구조를 재설계.
+        팀원들과 사용자 관점의 개선안을 논의·제작 — 디지털 작업지도서의 <b>현장 UX 설계(게이트·자동 진행)</b>로 이어진 협업 경험.</div></div>
+  </div>
+</div></section>
+
+<!-- Certificates & Language -->
+<section class="project" id="cert"><div class="container">
+  <div class="sh"><span class="no mono">06</span><h2>어학 & 자격증</h2><span class="s">Language & Certificates</span></div>
+  <div class="ways">
+    <div class="way reveal"><div class="n mono">어학 · 2025.09</div><div class="t">OPIc Intermediate High</div>
+      <div class="d">영어 말하기 — 기술 문서 독해와 해외 본사 문서 기반 업무에 활용</div></div>
+    <div class="way reveal"><div class="n mono">자격 · 2023.02</div><div class="t">GTQ 그래픽기술자격 1급</div>
+      <div class="d">한국생산성본부 — 시각 자료·도해 제작 역량의 기반</div></div>
+    <div class="way reveal"><div class="n mono">자격 · 2012.12</div><div class="t">ITQ 한글파워포인트 A등급</div>
+      <div class="d">한국생산성본부 — 문서·발표 자료 작성</div></div>
   </div>
 </div></section>
 
 <!-- Skills -->
 <section id="skills"><div class="container">
-  <div class="sh"><span class="no mono">04</span><h2>스킬 & 타임라인</h2><span class="s">Skills & Timeline</span></div>
+  <div class="sh"><span class="no mono">07</span><h2>스킬</h2><span class="s">Skills</span></div>
   <div class="skgrid">
     <div>
       <div class="skb">
@@ -458,12 +495,6 @@ footer{border-top:1px solid var(--line);padding:1.4rem 0;font-size:.72rem;color:
         <span class="chip" style="background:var(--bluebg);border-color:#CFE0FF">GTQ 그래픽기술자격 1급</span>
         <span class="chip" style="background:var(--bluebg);border-color:#CFE0FF">ITQ 한쇼 A등급</span>
       </div>
-    </div>
-    <div class="tl">
-      <div class="tr reveal"><span class="w mono">2021–2026</span><span class="dt"><i></i></span><span class="tx"><b>상명대학교 전자공학과</b> — 학사 졸업 (GPA 3.75/4.5) · 회로 · 반도체 소자/공정 · 마이크로프로세서 · 임베디드</span></div>
-      <div class="tr reveal"><span class="w mono">2022</span><span class="dt"><i></i></span><span class="tx"><b>GDSC (Google Developer Student Club)</b> — Figma 기반 앱 UX/UI 리디자인 프로젝트</span></div>
-      <div class="tr reveal"><span class="w mono">2025</span><span class="dt"><i></i></span><span class="tx"><b>Raspberry Pi 스마트 알약 디스펜서</b> 제작 · <b>서울대 반도체 8대 공정</b> 교육 이수 · OPIc IH</span></div>
-      <div class="tr reveal"><span class="w mono">2026.04–</span><span class="dt"><i></i></span><span class="tx"><b>프로메가바이오시스템스 · 생산기술</b> — 자동 핵산추출 장비의 BOM·SOP·제조문서, 조립·시험 공정 담당. 공정 디지털 도구 2종 기획·개발·검증·사내 배포 (단독)</span></div>
     </div>
   </div>
 </div></section>
