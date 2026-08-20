@@ -46,24 +46,20 @@ nav .links a:hover{color:var(--ink)}
 .dots.dark-dots a{background:rgba(255,255,255,.35)}
 .dots.dark-dots a.on{background:var(--dotc,#fff)}
 
-/* ── S1 히어로 (그라데이션 · 인사말 + 미모지 자리) ── */
-#home{align-items:center;overflow:hidden;color:#EFEDFB;
-  background:linear-gradient(135deg,#4E46B4 0%,#7B5BD6 52%,#A66BD0 100%)}
+/* ── S1 히어로 (애플 화이트 · 이름 중심) ── */
+#home{align-items:center;overflow:hidden;background:#fff;text-align:center}
+.grad{background:linear-gradient(94deg,#2E6BE6 0%,#7B5BD6 55%,#B15BD6 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
 @keyframes blink{50%{opacity:0}}
-.hero3{display:grid;grid-template-columns:1.3fr 1fr;gap:2.6rem;align-items:center}
-.hgreet{font-size:clamp(1.9rem,4.3vw,3.1rem);font-weight:900;color:#fff;line-height:1.45;letter-spacing:-.02em}
-.hthanks{margin-top:1.3rem;font-size:clamp(.95rem,1.6vw,1.15rem);color:rgba(255,255,255,.85);font-weight:700}
-.hthanks .cursor{display:inline-block;width:2px;height:1.05em;background:#fff;vertical-align:-.18em;margin-left:.18rem;animation:blink 1.05s steps(1) infinite}
-.htags{margin-top:2.1rem;display:flex;gap:.5rem;flex-wrap:wrap}
-.htag{font-size:.74rem;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
-  border-radius:999px;padding:.3rem .9rem;backdrop-filter:blur(4px)}
-.avatar{width:clamp(11rem,17vw,15rem);height:clamp(11rem,17vw,15rem);border-radius:50%;justify-self:center;
-  background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.24), rgba(255,255,255,.07));
-  border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 26px 60px rgba(22,10,60,.35);animation:floaty 5.5s ease-in-out infinite}
-.avatar img.photo{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.scrolldn{position:absolute;bottom:1.4rem;left:0;right:0;text-align:center;font-size:1.05rem;color:rgba(255,255,255,.9)}
+.heroEyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;color:#AEAEB2;text-transform:uppercase}
+.heroName{font-size:clamp(3.4rem,8vw,5.6rem);font-weight:900;color:var(--ink);letter-spacing:-.03em;line-height:1.15;margin-top:.6rem}
+.heroSlogan{font-size:clamp(1.05rem,2vw,1.4rem);font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-top:1.1rem}
+.heroSub{font-size:.92rem;color:var(--dim);margin-top:.9rem;line-height:1.9}
+.htags{margin-top:2rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.htag{font-size:.74rem;font-weight:700;color:var(--dim);background:var(--bg2);border:1px solid var(--line);
+  border-radius:999px;padding:.3rem .95rem}
+.scrolldn{position:absolute;bottom:1.4rem;left:0;right:0;text-align:center;font-size:1.05rem;color:#C6C6CB}
 .scrolldn i{display:inline-block;font-style:normal;animation:floaty 2.2s ease-in-out infinite}
 /* 스펙 그리드 (자기소개) */
 .spec4{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.6rem}
@@ -229,9 +225,7 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 @media (max-width:860px){
   .aboutgrid,.pgrid,.certgrid{grid-template-columns:1fr}
   .spec4{grid-template-columns:1fr 1fr}
-  .hero3{grid-template-columns:1fr;text-align:center;gap:2rem}
-  .avatar{margin:0 auto}
-  .htags{justify-content:center}
+
   .fixrow{grid-template-columns:1fr}
   .ways,.grow,.numrow{grid-template-columns:1fr}
   .ways{gap:.7rem}
@@ -262,16 +256,15 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 </div>
 
 <!-- S1 HERO -->
-<section class="full" id="home" data-dot="#FFFFFF">
-  <div class="container hero3">
-    <div>
-      <div class="hgreet">안녕하세요,<br>현장의 문제를 도구로 푸는<br>엔지니어 <b>김수민</b>입니다.</div>
-      <div class="hthanks">방문해 주셔서 감사합니다.<span class="cursor"></span></div>
-      <div class="htags reveal">
-        <span class="htag">생산기술</span><span class="htag">공정 자동화 · DX</span><span class="htag">머신비전 · 합성 데이터</span>
-      </div>
+<section class="full" id="home" data-dot="#1D1D1F">
+  <div class="container">
+    <div class="heroEyebrow">Portfolio · 2026</div>
+    <div class="heroName">김수민</div>
+    <div class="heroSlogan">문제를 재현하고, 원인을 좁히고, <span class="grad">재발하지 않게.</span></div>
+    <div class="heroSub">현장의 문제를 AI와 함께 도구로 해결하고, 사람의 기준으로 검증하고, 문서로 남기는 엔지니어입니다.</div>
+    <div class="htags reveal">
+      <span class="htag">생산기술</span><span class="htag">공정 자동화 · DX</span><span class="htag">머신비전 · 합성 데이터</span>
     </div>
-    <div class="avatar"></div>
   </div>
   <div class="scrolldn"><i>↓</i></div>
 </section>
@@ -500,9 +493,9 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
       <table class="cert">
         <tr><th>내용</th><th>취득</th><th>증명서</th></tr>
         <tr><td>GTQ 그래픽기술자격 <b>1급</b> (한국생산성본부)</td><td class="mono">2023.02</td>
-          <td><a class="pf" href="certs/gtq.pdf" target="_blank">보기</a></td></tr>
+          <td></td></tr>
         <tr><td>ITQ 한글파워포인트 <b>A등급</b> (한국생산성본부)</td><td class="mono">2012.12</td>
-          <td><a class="pf" href="certs/itq.pdf" target="_blank">보기</a></td></tr>
+          <td></td></tr>
         <tr><td>2종 보통 운전면허 (경찰청)</td><td class="mono">2022.08</td>
           <td></td></tr>
       </table>
@@ -541,6 +534,7 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
     <h2>함께 일하고 싶으시다면</h2>
     <div class="d">문제를 발견하면 도구를 만들어 증명하는 엔지니어입니다.<br>다음 현장에서 무엇을 만들게 될지 기대하고 있습니다.</div>
     <a class="mailbtn" href="mailto:smin1001@naver.com">smin1001@naver.com</a>
+    <div style="margin-top:1rem"><a class="mailbtn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);font-size:.85rem;padding:.65rem 1.6rem" href="portfolio.html">프로젝트 상세 포트폴리오 보기 →</a></div>
     <div class="ghlink"><a href="https://github.com/smin10013-collab">github.com/smin10013-collab</a></div>
   </div>
   <span class="upd mono">Last updated 2026.08 · Built by hand — single HTML, no framework</span>
@@ -575,7 +569,7 @@ var io2 = new IntersectionObserver(function(es){
       var i = secs.indexOf(e.target);
       dots.forEach(function(d, k){ d.classList.toggle('on', k === i); });
       var box = document.getElementById('dots');
-      box.className = 'dots' + ((e.target.classList.contains('dark') || e.target.id === 'home') ? ' dark-dots' : '');
+      box.className = 'dots' + (e.target.classList.contains('dark') ? ' dark-dots' : '');
       box.style.setProperty('--dotc', e.target.getAttribute('data-dot') || '#16181D');
     }
   });
