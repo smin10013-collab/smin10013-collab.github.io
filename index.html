@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>김수민 — Engineer Portfolio</title>
 <meta name="description" content="문제를 찾고, 도구를 만들고, 증명하는 엔지니어 — 김수민 포트폴리오">
+<!-- 링크 공유 미리보기 (Open Graph / Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="김수민 — Engineer Portfolio">
+<meta property="og:description" content="문제를 재현하고, 원인을 좁히고, 재발하지 않게 — 현장의 문제를 도구로 해결하는 엔지니어">
+<meta property="og:url" content="https://smin10013-collab.github.io/">
+<meta property="og:image" content="https://smin10013-collab.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="김수민 — Engineer Portfolio">
+<meta name="twitter:description" content="문제를 재현하고, 원인을 좁히고, 재발하지 않게 — 현장의 문제를 도구로 해결하는 엔지니어">
+<meta name="twitter:image" content="https://smin10013-collab.github.io/og.png">
+<!-- 파비콘 -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 :root{
   --ink:#16181D; --body:#3A414B; --dim:#6B7280; --faint:#9CA3AF;
@@ -259,6 +274,9 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 <section class="full" id="home" data-dot="#1D1D1F">
   <div class="container">
     <div class="heroEyebrow">Portfolio · 2026</div>
+    <!-- TODO[미모지] 아바타 이미지가 준비되면: ① 파일을 portfolio_web\avatar.png 로 저장 ② 아래 주석 해제 ③ 빌드 없이 push만 해도 반영
+    <img src="avatar.png" alt="김수민 아바타" style="width:110px;height:110px;border-radius:50%;object-fit:cover;margin-bottom:1.2rem;box-shadow:0 8px 24px rgba(0,0,0,.15)">
+    -->
     <div class="heroName">김수민</div>
     <div class="heroSlogan">문제를 재현하고, 원인을 좁히고, <span class="grad">재발하지 않게.</span></div>
     <div class="heroSub">현장의 문제를 AI와 함께 도구로 해결하고, 사람의 기준으로 검증하고, 문서로 남기는 엔지니어입니다.</div>
@@ -476,6 +494,31 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
   </div>
 </div></section>
 
+<!-- TODO[확장] S5b 활동·수상 — 콘텐츠_추가_양식.md에 자료 기입 후 이 주석을 해제하고 카드 채우기.
+     카테고리: 멘티멘토 / 소모임 수상 / 비교과활동 / 성적장학금 / 추가 프로젝트 (필요한 카드만 남기기)
+
+<section class="full" id="more" data-dot="#F59E0B"><div class="container">
+  <div class="sh"><h2>활동 & 수상</h2><span class="s">Activities & Awards</span></div>
+  <div class="grid3">
+    <div class="gcard reveal"><div class="w mono">기간 입력</div>
+      <div class="t">멘티멘토 활동</div>
+      <div class="d">무엇을 했고, 무엇을 배웠는지 2줄 이내.</div></div>
+    <div class="gcard reveal"><div class="w mono">기간 입력</div>
+      <div class="t">소모임 대상 수상</div>
+      <div class="d">수상명·주최·성과 요약.</div></div>
+    <div class="gcard reveal"><div class="w mono">기간 입력</div>
+      <div class="t">성적장학금</div>
+      <div class="d">수혜 학기·기준.</div></div>
+    <div class="gcard reveal"><div class="w mono">기간 입력</div>
+      <div class="t">비교과활동</div>
+      <div class="d">활동명·역할·성과.</div></div>
+    <div class="gcard reveal"><div class="w mono">기간 입력</div>
+      <div class="t">추가 프로젝트</div>
+      <div class="d">규모가 크면 별도 섹션(P3)으로 승격.</div></div>
+  </div>
+</div></section>
+-->
+
 <!-- S6 어학·자격증 -->
 <section class="full" id="cert" data-dot="#EC4899"><div class="container">
   <div class="sh"><h2>어학 & 자격증</h2><span class="s">Language & Certificates</span></div>
@@ -493,9 +536,11 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
       <table class="cert">
         <tr><th>내용</th><th>취득</th><th>증명서</th></tr>
         <tr><td>GTQ 그래픽기술자격 <b>1급</b> (한국생산성본부)</td><td class="mono">2023.02</td>
-          <td></td></tr>
+          <td><!-- TODO[증명서] gtq.pdf 마스킹 후 portfolio_web\certs\gtq.pdf 로 넣고 주석 해제:
+              <a class="pf" href="certs/gtq.pdf" target="_blank">보기</a> --></td></tr>
         <tr><td>ITQ 한글파워포인트 <b>A등급</b> (한국생산성본부)</td><td class="mono">2012.12</td>
-          <td></td></tr>
+          <td><!-- TODO[증명서] itq.pdf 마스킹 후 portfolio_web\certs\itq.pdf 로 넣고 주석 해제:
+              <a class="pf" href="certs/itq.pdf" target="_blank">보기</a> --></td></tr>
         <tr><td>2종 보통 운전면허 (경찰청)</td><td class="mono">2022.08</td>
           <td></td></tr>
       </table>
