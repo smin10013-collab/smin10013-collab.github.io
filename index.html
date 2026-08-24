@@ -383,6 +383,16 @@ html  = <span class="fn2">render</span>(steps, template)
 diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생성물-원본 전수 대조</span>
 <span class="kw">if</span> diff: <span class="fn2">reject</span>(html)         <span class="cm"># 불일치 = 생성 차단</span></pre>
     </div>
+    <div class="ways reveal" style="grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem">
+      <div class="way"><span class="wi">1</span><div class="t">파싱 — 규칙 기반</div>
+        <div class="d">구형 .doc는 라이브러리로 못 읽어 <b>Word 자체를 자동화(COM)</b>해 표 구조를 스텝 JSON으로 추출. 모호한 표는 조용히 넘기지 않고 멈춰서 보고</div></div>
+      <div class="way"><span class="wi">2</span><div class="t">매칭 — 내용 키</div>
+        <div class="d">확인 팝업은 스텝 번호가 아니라 <b>내용(공정명·부품번호) 키</b>로 부착 — 문서가 개정돼 번호가 밀려도 자동 추적</div></div>
+      <div class="way"><span class="wi">3</span><div class="t">렌더 — 템플릿 1벌</div>
+        <div class="d">화면 템플릿은 단 하나, JSON만 주입해 <b>단일 HTML</b> 생성 — 어떤 문서든 화면·게이트 동작이 동일, 오프라인 실행</div></div>
+      <div class="way"><span class="wi">4</span><div class="t">자기 검증 — 틀리면 차단</div>
+        <div class="d">생성된 화면을 되읽어 <b>원본과 전수 대조(578항목)</b>, 불일치면 생성 차단. 오류를 일부러 주입해 검증기 자체도 검증</div></div>
+    </div>
     <div class="morehint"><a href="#p1f">문제 해결 ↓</a></div>
   </div>
 </div></section>
@@ -470,6 +480,16 @@ patch = <span class="fn2">pick</span>(<span class="fn2">streak_only</span>(libra
 alpha = <span class="fn2">edge_feather</span>(<span class="fn2">core_only</span>(patch))
 out   = <span class="fn2">screen_blend</span>(img, patch, alpha)
 label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># GT 자동</span></pre>
+    </div>
+    <div class="ways reveal" style="grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem">
+      <div class="way"><span class="wi">1</span><div class="t">기하 정합 — 왜곡 수식화</div>
+        <div class="d">렌즈가 휘게 찍은 만큼 그리드도 휘도록 <b>fisheye 곡면을 파라미터로 기술</b> — well 하나하나에 정확히 좌표를 맞춤</div></div>
+      <div class="way"><span class="wi">2</span><div class="t">재료 검증 — 모양 필터</div>
+        <div class="d">실물에서 추출한 반사 패치를 <b>코어만 남게 정규화</b>하고, 장단비·채움률 필터로 streak형만 통과 (844 → 213)</div></div>
+      <div class="way"><span class="wi">3</span><div class="t">빛 합성 — screen 블렌드</div>
+        <div class="d">불투명 붙여넣기 대신 <b>밝기만 더하는 합성</b> — 코어는 255 하이라이트로 살리고, 가장자리 밴드만 페더</div></div>
+      <div class="way"><span class="wi">4</span><div class="t">레벨·라벨 — 수치 제어</div>
+        <div class="d">강도 L1~L5를 <b>개수·크기·밝기로 수치 매핑</b>, 어디에 심었는지 알기에 GT bbox가 수작업 없이 자동 생성</div></div>
     </div>
     <div class="morehint"><a href="#p2f">문제 해결 ↓</a></div>
   </div>
