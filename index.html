@@ -244,6 +244,18 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 .hproj a b{color:var(--blue)}
 /* 원칙 → 프로젝트 연결 링크 */
 .way .wlink{display:inline-block;margin-top:.6rem;font-size:.72rem;font-weight:800;color:var(--blue);text-decoration:none}
+/* 첨부 파일 카드 */
+.filecard{display:flex;align-items:center;gap:.9rem;margin-top:1.5rem;padding:.95rem 1.2rem;
+  border:1.5px solid var(--line);border-radius:14px;background:var(--bg2);text-decoration:none;
+  transition:border-color .2s,box-shadow .2s}
+.filecard:hover{border-color:var(--blue);box-shadow:0 4px 14px rgba(59,130,246,.14)}
+.filecard .fic{flex:none;width:2.4rem;height:2.4rem;border-radius:9px;background:#fff;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center}
+.filecard .fic svg{width:1.3rem;height:1.3rem}
+.filecard .fm{flex:1;min-width:0}
+.filecard .fm b{display:block;font-size:.86rem;color:var(--ink);font-weight:800}
+.filecard .fm small{font-size:.72rem;color:var(--faint)}
+.filecard .fo{flex:none;font-size:.76rem;font-weight:800;color:var(--blue)}
 
 /* 상세 분할 페이지 (개요 · 핵심 구현 · 문제 해결) */
 .solo{max-width:46rem;margin:0 auto}
@@ -368,7 +380,6 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
     <div class="num reveal"><div class="v">578 / 578</div><div class="l">생성 때마다 원본과 전수 대조 —<br>틀리면 배포되지 않습니다</div></div>
     <div class="num reveal"><div class="v">1개월</div><div class="l">기획→개발→검증→사내 배포까지<br>혼자서, 한 달에</div></div>
   </div>
-  <div class="morehint"><a href="#p1d">어떻게 만들었는지 — 다음 페이지 ↓</a></div>
 </div></section>
 
 <!-- S3b P1 상세 · 개요 -->
@@ -382,7 +393,6 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
       <tr><td>주요 기능</td><td>확인 전 진행 잠금(게이트) · 기록 양식 자동 채움 · 생성 후 자기 검증</td></tr>
       <tr><td>함께 만든 부분</td><td>게이트를 걸 지점은 <b>품질 이력(NCR·ECA) 분석 + 현장 협의</b>로 확정 — 개발은 혼자, 기준은 현장과 함께. 검토 의견을 받아 제안 방향도 다듬어가며 진행</td></tr>
     </table>
-    <div class="morehint"><a href="#p1i">핵심 구현 ↓</a></div>
   </div>
 </div></section>
 
@@ -410,7 +420,6 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
       <div class="way"><span class="wi">4</span><div class="t">자기 검증 — 틀리면 차단</div>
         <div class="d">생성된 화면을 되읽어 <b>원본과 전수 대조(578항목)</b>, 불일치면 생성 차단. 오류를 일부러 주입해 검증기 자체도 검증</div></div>
     </div>
-    <div class="morehint"><a href="#p1f">문제 해결 ↓</a></div>
   </div>
 </div></section>
 
@@ -427,7 +436,6 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
       <div class="sol">규칙 분기 + 모호하면 <b>조용히 넘기지 않고 명시적 실패</b>로 보고</div>
     </div>
   </div>
-  <div class="morehint" style="text-align:center"><a href="#p2">다음 프로젝트 — 빛반사 결함 합성기 ↓</a></div>
 </div></section>
 
 <!-- S4 P2 핵심 -->
@@ -467,7 +475,6 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
     <div class="num reveal"><div class="v">GT 100%</div><div class="l">라벨링 수작업 0 —<br>위치를 알고 그린 정답</div></div>
     <div class="num reveal"><div class="v">v1 → v4</div><div class="l">실물과 나란히 놓고<br>6차례 개선</div></div>
   </div>
-  <div class="morehint"><a href="#p2d">어떻게 만들었는지 — 다음 페이지 ↓</a></div>
 </div></section>
 
 <!-- S4b P2 상세 · 개요 -->
@@ -480,7 +487,11 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
       <tr><td>기술 스택</td><td>Python · OpenCV · NumPy · 파라메트릭 기하 모델링 · 데스크톱 GUI</td></tr>
       <tr><td>주요 기능</td><td>마스크 자동 정합 · 결함 강도 5레벨 제어 · GT 라벨 100% 자동</td></tr>
     </table>
-    <div class="morehint"><a href="p2_report.html" target="_blank">개발보고서(논문 형식) 전문 보기 ↗</a>&nbsp; · &nbsp;<a href="#p2i">핵심 구현 ↓</a></div>
+    <a class="filecard reveal" href="p2_report.html" target="_blank">
+      <span class="fic"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="#3B82F6" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 3v4h4M9 12h7M9 15.5h5" stroke="#3B82F6" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span class="fm"><b>개발보고서 — 빛반사 결함 합성기 (논문 형식)</b><small>HTML 문서 · A4 논문 레이아웃 · 실제 이미지 포함 · 새 탭에서 열립니다</small></span>
+      <span class="fo">열어보기 ↗</span>
+    </a>
   </div>
 </div></section>
 
@@ -508,7 +519,6 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
       <div class="way"><span class="wi">4</span><div class="t">레벨·라벨 — 수치 제어</div>
         <div class="d">강도 L1~L5를 <b>개수·크기·밝기로 수치 매핑</b>, 어디에 심었는지 알기에 GT bbox가 수작업 없이 자동 생성</div></div>
     </div>
-    <div class="morehint"><a href="#p2f">문제 해결 ↓</a></div>
   </div>
 </div></section>
 
@@ -525,7 +535,6 @@ label = <span class="fn2">bbox_of</span>(placement)         <span class="cm"># G
       <div class="sol"><b>모양 필터(장단비·채움률)</b>로 자동 차단 — 라이브러리 844 → 213 정제</div>
     </div>
   </div>
-  <div class="morehint" style="text-align:center"><a href="#grow">그 밖의 프로젝트 · 교육 · 활동 ↓</a></div>
 </div></section>
 
 <!-- S5 성장 -->
