@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>원본주의 기반 디지털 작업지도서 자동 변환 시스템의 설계 및 구현</title>
+<style>
+:root{ --ink:#111; --dim:#444; --faint:#777; --line:#CFCFCF; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Serif KR','Batang','바탕',serif;color:var(--ink);background:#E8E8E8;
+  line-height:1.78;word-break:keep-all;font-size:10.5pt}
+.paper{width:210mm;min-height:297mm;margin:8mm auto;background:#fff;padding:22mm 20mm;
+  box-shadow:0 2px 14px rgba(0,0,0,.18)}
+@media print{
+  body{background:#fff}
+  .paper{width:auto;min-height:auto;margin:0;box-shadow:none;padding:0}
+  @page{size:A4;margin:20mm 18mm}
+  h2{page-break-after:avoid}
+  table,figure{page-break-inside:avoid}
+}
+.sans{font-family:'Malgun Gothic','맑은 고딕',sans-serif}
+h1{font-size:16pt;text-align:center;line-height:1.55;margin-bottom:.4rem}
+.sub{font-size:11pt;text-align:center;color:var(--dim);margin-bottom:1.2rem}
+.byline{text-align:center;font-size:10pt;color:var(--dim);margin-bottom:.2rem}
+.date{text-align:center;font-size:9pt;color:var(--faint);margin-bottom:1.6rem}
+.abs{border-top:2px solid var(--ink);border-bottom:1px solid var(--line);padding:.9rem .4rem;margin-bottom:1.6rem}
+.abs .at{font-weight:800;font-size:10pt;margin-bottom:.35rem}
+.abs p{font-size:9.5pt;line-height:1.85;text-align:justify}
+.kw{font-size:9pt;color:var(--dim);margin-top:.55rem}
+h2{font-size:12pt;font-weight:800;margin:1.7rem 0 .6rem}
+h3{font-size:10.8pt;font-weight:800;margin:1.1rem 0 .4rem}
+p{text-align:justify;margin-bottom:.55rem}
+ul,ol{margin:.2rem 0 .7rem 1.4rem}
+li{margin-bottom:.2rem;text-align:justify}
+code{font-family:Consolas,monospace;font-size:9pt;background:#F2F2F2;padding:0 .25em;border-radius:3px}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;margin:.5rem 0 .4rem;font-family:'Malgun Gothic',sans-serif}
+caption{caption-side:top;font-size:9pt;font-weight:700;text-align:left;padding-bottom:.3rem}
+th{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);padding:.32rem .45rem;text-align:left;font-weight:700}
+td{border-bottom:1px solid var(--line);padding:.34rem .45rem;vertical-align:top;line-height:1.6}
+tr:last-child td{border-bottom:1.5px solid var(--ink)}
+figure{margin:.8rem 0 1rem}
+figcaption{font-size:9pt;font-weight:700;text-align:center;margin-top:.4rem;font-family:'Malgun Gothic',sans-serif}
+.fig{background:#FAFAFA;border:1px solid var(--line);border-radius:4px;padding:.8rem 1rem;
+  font-family:Consolas,monospace;font-size:8.6pt;line-height:1.75;white-space:pre;overflow-x:auto}
+.note{font-size:8.8pt;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="paper">
+
+<h1>원본주의 기반 디지털 작업지도서 자동 변환 시스템의<br>설계 및 구현</h1>
+<div class="sub">— 확인 강제 게이트(forcing function)를 통한 조립 공정 휴먼 에러의 구조적 방지 —</div>
+<div class="byline">김수민</div>
+<div class="date">2026. 08. 18.</div>
+
+<div class="abs">
+  <div class="at">요&nbsp;&nbsp;약</div>
+  <p>의료·진단장비 조립 공정에서 종이 작업지도서에 의존한 작업은 유사 부품 오체결, 주의사항 누락, 수기 전기(轉記) 오류 등
+  휴먼 에러에 구조적으로 취약하다. 본 보고서는 공식 작업지도서(.doc)를 클릭 진행형 웹 화면으로 자동 변환하고,
+  원본 문서의 Check Item 항목을 작업자가 확인하기 전에는 다음 단계로의 진행을 잠그는 게이트(forcing function)를 부여하며,
+  조립–시험–기록을 단일 화면으로 연결하는 시스템의 설계와 구현, 검증 결과를 기술한다.
+  시스템은 ① 화면은 공식 문서의 내용만을 표시한다(원본주의), ② 작업 데이터를 어디에도 축적하지 않는다(무상태),
+  ③ 판단이 모호한 경우 진행을 중단하고 사람에게 보고한다(명시적 실패)의 세 원칙 위에 설계되었다.
+  변환은 Word COM 자동화 기반의 결정적(deterministic) 파이프라인으로 수행되어 동일 입력에 대해 항상 동일 출력을 보장하며,
+  문서 개정 시에도 연결이 유지되도록 스텝 번호가 아닌 내용 식별자(문구·파일명·모델) 기반의 레지스트리 매칭을 도입하였다.
+  Maxwell 계열 5개 모델 전 라인업(조립 274 스텝, 시험 230 항목)에 적용하였고, 생성물–원본 전수 자동 대조에서
+  578/578 항목 일치, 전량 재생성 시험에서 재현성 100%를 확인하였다. 산출물은 설치가 필요 없는 단일 실행 파일과
+  오프라인 단일 HTML로 배포되었다.</p>
+  <div class="kw"><b>주제어:</b> 디지털 작업지도서, forcing function, 휴먼 에러 방지, 문서 자동 변환, Word COM, 무상태 설계, 자기 검증</div>
+</div>
+
+<h2>1. 서론</h2>
+<h3>1.1 배경 및 문제 정의</h3>
+<p>조립 현장의 종이 작업지도서는 정보 전달 매체로서는 충분하지만 행동 통제 장치로서는 한계가 있다.
+작업자가 스텝을 건너뛰거나 주의사항을 지나쳐도 이를 막는 장치가 없으며, 시험 결과와 자재 이력의 수기 전기 과정에서
+누락·오기가 발생할 수 있다. 실제로 자사에서는 유사 부품(Top grip)을 타 장비용으로 오체결한 품질 이슈가 발생하였고,
+그 시정조치로 검증 스텝이 문서에 추가된 바 있다(ECO 24-017). 이는 "주의"를 문서에 적는 것만으로는 부족하며,
+확인 행위를 구조적으로 강제하는 장치가 필요함을 보여준다.</p>
+<h3>1.2 목적 및 범위</h3>
+<p>본 개발의 목적은 다음 세 가지이다. 첫째, 공식 작업지도서를 사람 손을 거의 거치지 않고 클릭 진행형 웹 화면으로 변환한다.
+둘째, 원본 문서의 Check Item 항목에 대해 작업자 확인 전 진행을 잠그는 게이트를 자동 부여한다.
+셋째, 조립–시험(TP)–기록(DHR 양식)을 하나의 화면 흐름으로 연결하되 데이터는 축적하지 않는다.
+적용 범위는 Maxwell 계열 5개 모델(AS4500·AS4600·AS6000·AS8000·AS8500)의 조립 지도서 전 스텝과 시험 절차서,
+기록 양식이며, 포장·FQC 공정은 제외한다. 본 시스템은 공식 지도서(정본)를 대체하지 않는 확인 보조 도구로 정의한다.</p>
+
+<h2>2. 요구사항 및 설계 원칙</h2>
+<h3>2.1 환경 제약</h3>
+<ul>
+  <li>사내 보안 요건상 서버·데이터베이스 운용 불가 — 모든 처리는 로컬 PC 내에서 완결되어야 함</li>
+  <li>원본 문서가 구형 바이너리 포맷(.doc)으로, 일반 파이썬 라이브러리(python-docx)로는 파싱 불가</li>
+  <li>실행 환경에 Python은 있으나 Node.js가 없음 — 웹 빌드 도구 사용 불가</li>
+  <li>산출물은 인터넷이 없는 현장 PC에서 파일 단독으로 동작해야 함</li>
+</ul>
+<h3>2.2 설계 원칙</h3>
+<p>구현에 앞서 다음 세 원칙을 확정하고, 이후 모든 설계 판단의 기준으로 삼았다.</p>
+<ol>
+  <li><b>원본주의</b> — 화면은 공식 문서의 내용만을 표시한다. 게이트(확인 팝업)는 원본의 Check Item 칸에 기재된 항목에서만
+  생성하며, 시스템이 자체 판단으로 추가하는 항목은 없다. 확인 항목의 추가·삭제는 문서의 정식 개정(ECO)을 통해서만 이루어지고,
+  재변환 시 자동 반영된다. 이로써 화면과 정본의 불일치 가능성을 원천 차단한다.</li>
+  <li><b>무상태(stateless)</b> — 작업자가 화면에 기입한 값은 서버·파일 어디에도 축적되지 않는다. 기록은 기입값이 반영된
+  기록 양식을 PDF로 출력·서명하는 것으로 완결한다.</li>
+  <li><b>명시적 실패</b> — 파싱·매칭 과정에서 판단이 모호한 경우 임의로 처리하지 않고 진행을 중단하거나 검토 항목으로
+  보고한다(조용한 누락 금지).</li>
+</ol>
+
+<h2>3. 시스템 설계</h2>
+<h3>3.1 전체 구조</h3>
+<p>시스템은 로컬 웹 애플리케이션(변환 앱)과 그 산출물(웹 작업지도서·통합문서)로 구성된다. 변환 앱은 Flask 기반
+로컬 서버(127.0.0.1 전용)로 브라우저를 GUI로 사용하며, 외부 네트워크와 통신하지 않는다.</p>
+<figure>
+<div class="fig">브라우저 (127.0.0.1)  —  업로드 · 진행률 표시 · 산출물 열기
+      │
+app.py (Flask)  —  API 라우트 · 백그라운드 작업 스레드 · 작업 이력(jobs.json)
+      │
+pipeline.convert()   결정적 변환 파이프라인
+      ├ ① parse_doc()               Word COM — .doc 표 순회 → 스텝 데이터
+      ├ ② extract_page_diagrams()   PyMuPDF — 표 테두리 기준 도해 클립
+      ├ ③ parse_check_cell()        Check Item → 게이트 데이터
+      ├ ④ 스키마 검증               위반 시 등록 거부
+      └ ⑤ register()                JSON + 이미지로 등록
+      │
+산출물:  웹 작업지도서(렌더러 주입) · 통합문서(조립+시험+기록 단일 HTML)</div>
+<figcaption>그림 1. 시스템 전체 구조 및 변환 파이프라인</figcaption>
+</figure>
+<h3>3.2 결정적 변환 파이프라인</h3>
+<p>변환은 규칙 기반으로 동작하여 동일 문서 입력에 대해 항상 동일한 출력을 생성한다. 원본 문서에서 각 조립 스텝은
+하나의 표(table)로 구성되어 있으며, 파서는 문서의 복사본을 비표시·읽기 전용으로 열어 표를 순회하면서 라벨
+(Work Name, BOM, Instruction, Check Item, Tool)로 칸을 식별한다. 스텝 번호는 쌍이 되는 PDF의 페이지 순번에
+정렬하여, 화면의 스텝 번호와 원본 페이지가 일치하도록 하였다. 수정 이력표(첫 칸 "Version")는 스텝에서 제외하고,
+설명 없이 사진만 이어지는 표는 직전 스텝에 병합하는 등의 예외 규칙은 실제 문서 전수 변환 과정에서 도출하여 코드화하였다.</p>
+<h3>3.3 레지스트리 매칭 — 내용 식별자 기반 연결</h3>
+<p>시험 항목·기록 양식의 기입 칸과 화면 스텝의 연결에 스텝 번호를 사용하면 문서 개정으로 번호가 밀릴 때마다
+연결이 어긋난다. 이를 피하기 위해 연결 키를 공정 식별자(지시문 문구·Work Name·파일명·모델)로 정의한 레지스트리를
+두고, 변환 시마다 자동 매칭한다. 매칭 결과는 매칭됨/미매칭/신규로 리포트되어, 문서 개정으로 공정이 추가·변경된 경우
+사람이 검토 카드에서 1회 확정하면 이후 변환부터 자동 적용된다. 미매칭은 오류가 아니라 변경 감지 신호로 취급한다.</p>
+<h3>3.4 게이트(forcing function)</h3>
+<p>Check Item이 있는 스텝에 도달하면 확인 팝업이 표시되고, 작업자가 확인 체크를 완료하기 전에는 다음 버튼이
+잠긴다. 확인 상태는 페이지 메모리에만 존재하여 새로 고침 시 초기화된다 — 확인 이력을 남기지 않는 것은
+무상태 원칙의 의도된 결과이다.</p>
+
+<h2>4. 구현</h2>
+<h3>4.1 개발 환경 및 도구</h3>
+<table>
+<caption>표 1. 사용 도구 및 선정 사유</caption>
+<tr><th style="width:22%">도구</th><th style="width:36%">용도</th><th>선정 사유</th></tr>
+<tr><td>Python 3.13</td><td>전체 로직</td><td>사내 PC 기본 보유</td></tr>
+<tr><td>Flask</td><td>변환 앱 GUI (로컬 웹서버)</td><td>127.0.0.1 전용 — 서버 금지 요건과 브라우저 GUI의 양립</td></tr>
+<tr><td>pywin32 (Word COM)</td><td>.doc 표 파싱</td><td>구형 포맷은 라이브러리 파싱 불가 → 설치된 워드를 비표시로 자동화 (복사본·읽기전용·매크로 차단)</td></tr>
+<tr><td>PyMuPDF</td><td>도해 추출·양식 좌표 산출</td><td>표 테두리 검출 기반 클립으로 도해 손상 없이 추출</td></tr>
+<tr><td>HTML/JS (무프레임워크)</td><td>산출물 화면</td><td>Node 부재 + 단일 파일 오프라인 동작 요건</td></tr>
+<tr><td>PyInstaller</td><td>배포 패키징</td><td>설치 없는 단일 exe — 현장 PC 배포 용이</td></tr>
+<tr><td>JSON 파일</td><td>레지스트리·작업 이력</td><td>DB 없이 사람이 직접 열람·비교·롤백 가능</td></tr>
+</table>
+<p class="note">외부 의존 라이브러리는 Flask·pywin32·PyMuPDF 3종이며, 파이썬 소스는 약 3,600행, 화면 스크립트는
+renderer.js·gate.js·validate.js 3본이다. 데이터(JSON)와 화면(렌더러)을 분리하여 렌더러 1회 수정이 등록된 전 문서에
+일괄 반영되도록 하였다.</p>
+<h3>4.2 GUI 구현 — 브라우저를 네이티브 앱처럼 사용</h3>
+<p>변환 앱은 데스크톱 GUI 프레임워크(tkinter, Qt 등)를 사용하지 않고 <b>브라우저 자체를 GUI로 사용하는
+로컬 웹 앱 구조</b>를 채택하였다. 실행 파일을 더블클릭하면 Flask 서버가 <code>127.0.0.1:8765</code>에서 기동되고,
+1.2초 후 기본 브라우저가 자동으로 열리며 앱 화면이 표시된다(<code>webbrowser</code> + <code>threading.Timer</code>).
+사용자 관점에서는 설치·주소 입력 없이 일반 데스크톱 앱과 동일한 실행 경험이다.</p>
+<p>화면(HTML/CSS/JS)은 별도 프런트엔드 빌드 없이 <code>app.py</code>에 내장되어 서버 코드와 단일 파일로 관리되며,
+화면–서버 상호작용은 REST API(약 23개 라우트: 업로드·변환·세트 생성·검토 확정·롤백 등)로 이루어진다.
+네이티브 앱 수준의 반응성을 위해 다음을 구현하였다.</p>
+<ul>
+  <li><b>비동기 작업 처리</b> — 수 분이 소요되는 Word COM 변환은 백그라운드 스레드에서 실행하고, 화면은 2초 주기로
+  작업 상태(<code>/api/jobs</code>)를 폴링하여 진행률·단계 로그를 실시간 갱신한다. 변환 중에도 화면 조작이 차단되지 않는다.</li>
+  <li><b>드래그&amp;드롭 파일 투입</b> — 문서 목록·모델 세트 카드에 파일을 끌어다 놓으면 업로드와 슬롯 분류가 수행된다.</li>
+  <li><b>OS 연동</b> — 산출물 폴더 열기 요청 시 서버가 Windows 탐색기를 직접 호출하여, 웹 화면에서 로컬 파일 시스템으로
+  자연스럽게 이어지는 흐름을 제공한다.</li>
+  <li><b>단일 페이지 구성</b> — 문서 목록·모델 세트·검토 카드·설정을 한 페이지의 탭·카드 UI로 구성하여 화면 전환 없이 사용한다.</li>
+</ul>
+<p>이 구조의 이점은 세 가지이다. 첫째, 별도 GUI 프레임워크에 대한 학습·의존 없이 웹 표준 기술만으로 GUI를 구현하였다.
+둘째, 앱 화면과 산출물(웹 작업지도서)이 동일한 기술 스택을 공유하여 유지보수 지식이 단일화된다.
+셋째, UI 리소스가 코드에 포함되므로 PyInstaller 패키징 후에도 단일 exe가 유지된다.</p>
+
+<h3>4.3 산출물 화면의 주요 기능</h3>
+<p>산출물의 기능은 모두 브라우저 내장 기능(타이머·키보드 이벤트·로컬 저장소)만으로 구현하여 오프라인 단독 동작을
+보장하였다.</p>
+<table>
+<caption>표 2. 기능별 구현 방식</caption>
+<tr><th style="width:24%">기능</th><th>구현 방식</th></tr>
+<tr><td>게이트 (확인 전 잠금)</td><td>확인 여부를 페이지 메모리 객체에 기록, 미확인 시 다음 버튼 클릭 무시. 새로 고침 시 재잠금(무상태)</td></tr>
+<tr><td>자동 진행 (10초 넘김)</td><td><code>setInterval</code> 1초 주기 카운트다운 후 다음 버튼을 프로그램적으로 클릭.
+확인·기입이 있는 스텝에서는 대기하며, 잠긴 버튼은 클릭하지 않으므로 게이트 우회 불가. 화면 조작 시 카운트 리셋,
+새로 고침 시 비활성(안전 기본값)</td></tr>
+<tr><td>Enter 연속 기입</td><td>키보드 이벤트로 Enter 시 다음 빈 기입 칸으로 포커스 이동, 완료 시 다음 스텝.
+바코드 스캐너의 종단 Enter와 호환되어 스캔만으로 연속 기입 가능</td></tr>
+<tr><td>기입값의 기록 양식 반영</td><td>기입값을 페이지 내 변수에 유지하고, 기록 페이지에서 원본 양식 이미지 위에
+좌표(%) 오버레이로 표시. 좌표는 빌더가 원본 PDF에서 자동 산출. 미기입 항목은 클릭 시 해당 입력 위치로 이동</td></tr>
+<tr><td>이어하기</td><td>진행 상태를 브라우저 localStorage에 자동 저장(해당 PC 한정, 서버 전송 없음), 재접속 시 복원 제안</td></tr>
+<tr><td>문서 세트 자동 분류</td><td>모델 세트 카드에 파일 투입 시 파일명·내용 규칙으로 조립/시험/기록 양식 슬롯 자동 판별,
+판별 불가 시 사용자 확인 요청</td></tr>
+</table>
+<h3>4.4 배포</h3>
+<p>PyInstaller 단일 exe로 패키징하여 설치 절차 없이 배포하였다. 재빌드 스크립트는 "코드는 교체, 데이터는 보존"
+원칙에 따라 등록 데이터·확정 레지스트리·작업 이력을 보존한 채 실행 파일과 렌더러 코드만 교체한다.</p>
+
+<h2>5. 검증 및 결과</h2>
+<h3>5.1 검증 방법</h3>
+<ol>
+  <li><b>자기 검증(self-check)</b> — 통합문서 생성 시마다 생성물을 재파싱하여 원본 등록 데이터와 항목 전수 대조.
+  불일치가 하나라도 있으면 생성을 실패로 처리한다.</li>
+  <li><b>오류 주입 시험</b> — 검증기 자체의 유효성을 확인하기 위해 의도적으로 오류를 주입한 생성물이 실제로
+  검출·차단되는지 확인하였다.</li>
+  <li><b>전량 재생성 시험</b> — 등록 데이터를 전부 삭제한 후 원본 문서만으로 5개 모델을 처음부터 재생성하여
+  동일 결과가 재현되는지 확인하였다.</li>
+</ol>
+<h3>5.2 결과</h3>
+<table>
+<caption>표 3. 모델별 자기 검증 결과 (2026-08 전량 재생성 기준)</caption>
+<tr><th>모델</th><th>검증 항목 일치</th></tr>
+<tr><td>AS4500</td><td>85 / 85</td></tr>
+<tr><td>AS4600</td><td>85 / 85</td></tr>
+<tr><td>AS6000</td><td>88 / 88</td></tr>
+<tr><td>AS8000</td><td>165 / 165</td></tr>
+<tr><td>AS8500</td><td>155 / 155</td></tr>
+<tr><td><b>계</b></td><td><b>578 / 578 (100%)</b></td></tr>
+</table>
+<p>5개 모델 전 라인업의 조립 274 스텝과 시험 230 항목이 디지털화되었고, 전량 재생성 시험에서 재현성 100%를
+확인하였다. 잘못된 파일 투입(예: 타 모델 양식) 시 시스템이 임의 진행하지 않고 명시적 오류로 중단함을 실사용 중
+확인하였으며, 이는 설계 원칙 ③의 의도된 동작이다. 기획에서 사내 배포까지 소요 기간은 약 1개월이며, 전 과정
+(기획–개발–검증–배포)을 단독 수행하였다.</p>
+
+<h2>6. 고찰 — 한계 및 향후 과제</h2>
+<ul>
+  <li><b>Word 의존성</b> — 변환 기능은 워드가 설치된 PC에서만 동작한다. 산출물 자체는 무의존이므로 현장 사용에는
+  영향이 없다.</li>
+  <li><b>현장 파일럿</b> — 기술 검증은 완료되었으나 실제 작업자 대상 현장 파일럿과 사용성 피드백 수집이 다음 단계이다.</li>
+  <li><b>확인 항목의 정식 반영</b> — 불량 이력(NCR·ECA) 검토에서 도출된 추가 확인 후보 항목은 시스템에 직접 삽입하지
+  않고, 원본 문서의 정식 개정(ECO)을 통해 Check Item으로 반영하는 절차를 진행할 예정이다(원본주의 유지).</li>
+  <li><b>MES 연계</b> — 최종 지향점은 MES 대시보드 링크 연계를 통한 정식 시스템화이며, 기록의 무상태 원칙은 유지한다.</li>
+</ul>
+
+<h2>7. 결론</h2>
+<p>본 개발을 통해 종이 작업지도서 기반 공정을, 공식 문서만을 정보원으로 하는 클릭 진행형 화면과 확인 강제 게이트,
+자동 기록 반영을 갖춘 디지털 작업 흐름으로 전환하였다. 핵심 기여는 다음과 같다.
+첫째, 휴먼 에러 방지를 작업자의 주의력이 아닌 화면 구조(forcing function)로 해결하였다.
+둘째, 도구가 기준을 만들지 않고 공식 문서만이 기준을 만들게 하는 원본주의 설계로 화면–정본 불일치를 원천 차단하였다.
+셋째, 결정적 변환·내용 식별자 매칭·자기 검증의 조합으로 문서 개정에 강건하고 스스로 오류를 차단하는 유지보수
+체계를 확립하였다. 578/578 전수 일치와 재현성 100%는 이 체계가 실제로 동작함을 보이며, 향후 현장 파일럿과
+MES 연계를 통해 정식 시스템으로 발전시킬 수 있는 기반을 마련하였다.</p>
+
+<p class="note" style="margin-top:1.6rem;border-top:1px solid var(--line);padding-top:.5rem">
+본 보고서는 사내 기술 보고서이며, 시스템 상세(코드 지도·재빌드 절차·상황별 매뉴얼)는 별도 문서
+「디지털 작업지도서 — 시스템 설명서」를 참조한다. 인쇄: 브라우저에서 Ctrl+P → PDF 저장(A4).</p>
+
+</div>
+</body>
+</html>
