@@ -256,6 +256,13 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 .filecard .fm b{display:block;font-size:.86rem;color:var(--ink);font-weight:800}
 .filecard .fm small{font-size:.72rem;color:var(--faint)}
 .filecard .fo{flex:none;font-size:.76rem;font-weight:800;color:var(--blue)}
+/* 실제 화면 샷 */
+.shot{width:100%;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.08)}
+.shotcap{font-size:.74rem;color:var(--dim);text-align:center;margin-top:.7rem;line-height:1.7}
+.shotlbl{font-size:.8rem;font-weight:800;color:var(--ink);margin:0 0 .5rem}
+.bbx{position:absolute;border:2px dashed var(--sol);border-radius:4px}
+.bbx .bl{position:absolute;top:-1.35rem;left:-2px;background:var(--sol);color:#3D2E00;font-size:.62rem;
+  font-weight:900;border-radius:4px 4px 0 0;padding:.12rem .45rem;white-space:nowrap}
 
 /* 상세 분할 페이지 (개요 · 핵심 구현 · 문제 해결) */
 .solo{max-width:46rem;margin:0 auto}
@@ -359,18 +366,10 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
   <div class="q reveal"><span class="qq">Q.</span> 작업 실수를 사람의 주의력이 아니라 <b>구조로</b> 막을 수 없을까?</div>
   <div class="ans reveal">확인 전에는 다음으로 넘어갈 수 없는 <b>디지털 작업지도서</b>를 만들었습니다.</div>
   <div class="mockwrap">
-    <div class="mock reveal" style="min-height:15rem;text-align:left">
-      <div class="m-top"><span class="m-stno">STEP 12</span><span>부품 조립</span><span class="m-cnt">12 / 39</span></div>
-      <div class="m-bar"><i></i></div>
-      <div class="m-body"><div class="m-img"></div>
-        <div class="m-lines"><i style="width:92%"></i><i style="width:78%"></i><i style="width:85%"></i><i style="width:55%"></i></div></div>
-      <div class="m-modal">
-        <div class="m-mh">! &nbsp;주의 — 진행 전 확인</div>
-        <div class="m-lead">부품의 방향을 확인한 후 체결한다</div>
-        <div class="m-q">위 내용을 확인했습니까?</div>
-        <div class="m-btns"><span>아니오</span><span class="y">예</span></div></div>
-      <div class="m-foot"><span class="gb">← 이전</span><span class="lk">확인해야 진행됩니다</span><span class="nb">다음 →</span></div>
-      <span class="cap">게이트 — 재구성 목업</span>
+    <div class="reveal" style="max-width:46rem;margin:0 auto">
+      <img class="shot" src="imgs/p1_wi.jpg" alt="웹 작업지도서 실제 화면" loading="lazy">
+      <div class="shotcap">실제 화면 — 웹 작업지도서 (AS8500 · 77스텝). 확인 항목이 있는 스텝에서는
+        팝업 확인을 완료하기 전까지 [다음 단계] 버튼이 잠깁니다</div>
     </div>
   </div>
   <div class="numrow">
@@ -396,6 +395,17 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
       <span class="fm"><b>개발보고서 — 디지털 작업지도서 (논문 형식)</b><small>HTML 문서 · A4 논문 레이아웃 · 새 탭에서 열립니다</small></span>
       <span class="fo">열어보기 ↗</span>
     </a>
+  </div>
+</div></section>
+
+<!-- S3b2 P1 실제 작동 -->
+<section class="full" id="p1s" data-dot="#3B82F6"><div class="container">
+  <div class="sh"><h2>시작부터 기록까지 — 실제 화면</h2><span class="s">Project 01 · In Action</span></div>
+  <div class="solo">
+    <div class="shotlbl reveal">① 변환 앱 — 문서를 올리면 변환·검증·산출물·이력 관리까지 한 화면 (등록 4종 · 196스텝)</div>
+    <img class="shot reveal" src="imgs/p1_app.jpg" alt="변환 앱 대시보드" loading="lazy">
+    <div class="shotlbl reveal" style="margin-top:1.3rem">② 통합 문서 시작 화면 — Order 정보 1회 입력이 기록 양식에 자동 반영, 공구 교정 유효일 검증 후 조립 시작</div>
+    <img class="shot reveal" src="imgs/p1_full_start.jpg" alt="통합 문서 시작 화면" loading="lazy">
   </div>
 </div></section>
 
@@ -447,29 +457,15 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
   <div class="q reveal"><span class="qq">Q.</span> 빛반사 한 줄에 머신비전이 6-well을 8-well로 읽었다 — 결함 사진 일곱 장으로 검출 AI를 학습시킬 수 있을까?</div>
   <div class="ans reveal">정상 사진 <b>1장</b>으로 결함 이미지와 정답 라벨을 <b>직접 합성</b>했습니다.</div>
   <div class="synwrap">
-    <div class="syn2 reveal">
-      <div class="half"><div class="h6">실물 결함 (예시 도식)</div>
-        <svg viewBox="0 0 160 96" preserveAspectRatio="none" style="min-height:11.5rem">
-          <defs><filter id="ga"><feGaussianBlur stdDeviation="0.7"/></filter></defs>
-          <rect x="2" y="6" width="156" height="84" rx="8" fill="#22303F"/>
-          <g><rect x="12" y="18" width="18" height="60" rx="5" fill="#35516B"/><rect x="36" y="16" width="18" height="64" rx="5" fill="#3A5878"/><rect x="60" y="15" width="18" height="66" rx="5" fill="#35516B"/><rect x="84" y="15" width="18" height="66" rx="5" fill="#3A5878"/><rect x="108" y="16" width="18" height="64" rx="5" fill="#35516B"/><rect x="132" y="18" width="18" height="60" rx="5" fill="#3A5878"/></g>
-          <g filter="url(#ga)" stroke="#FFF" stroke-linecap="round">
-            <line x1="64" y1="30" x2="72" y2="26" stroke-width="2.2" opacity=".95"/>
-            <line x1="88" y1="34" x2="97" y2="31" stroke-width="1.6" opacity=".8"/>
-            <line x1="41" y1="28" x2="46" y2="26" stroke-width="1.3" opacity=".6"/></g>
-        </svg></div>
-      <div class="half"><div class="h6">합성 + GT 라벨 자동</div>
-        <svg viewBox="0 0 160 96" preserveAspectRatio="none" style="min-height:11.5rem">
-          <defs><filter id="gb"><feGaussianBlur stdDeviation="0.7"/></filter></defs>
-          <rect x="2" y="6" width="156" height="84" rx="8" fill="#22303F"/>
-          <g><rect x="12" y="18" width="18" height="60" rx="5" fill="#35516B"/><rect x="36" y="16" width="18" height="64" rx="5" fill="#3A5878"/><rect x="60" y="15" width="18" height="66" rx="5" fill="#35516B"/><rect x="84" y="15" width="18" height="66" rx="5" fill="#3A5878"/><rect x="108" y="16" width="18" height="64" rx="5" fill="#35516B"/><rect x="132" y="18" width="18" height="60" rx="5" fill="#3A5878"/></g>
-          <g filter="url(#gb)" stroke="#FFF" stroke-linecap="round">
-            <line x1="40" y1="32" x2="48" y2="28" stroke-width="2.1" opacity=".95"/>
-            <line x1="90" y1="27" x2="98" y2="24" stroke-width="1.8" opacity=".85"/>
-            <line x1="113" y1="36" x2="120" y2="33" stroke-width="1.4" opacity=".7"/></g>
-          <g fill="none" stroke="#FDB813" stroke-width="1.1" stroke-dasharray="3 2">
-            <rect x="36" y="23" width="17" height="13" rx="1"/><rect x="86" y="19" width="16" height="12" rx="1"/><rect x="109" y="29" width="15" height="11" rx="1"/></g>
-        </svg></div>
+    <div class="reveal" style="max-width:46rem;margin:0 auto">
+      <div style="position:relative">
+        <img class="shot" src="imgs/p2_result.jpg" alt="합성 결과 실제 출력" loading="lazy">
+        <span class="bbx" style="left:4.5%;top:15%;width:14%;height:22%"><span class="bl">GT bbox — 자동</span></span>
+        <span class="bbx" style="left:41.5%;top:27%;width:19%;height:26%"></span>
+        <span class="bbx" style="left:82.5%;top:20%;width:14%;height:26%"></span>
+      </div>
+      <div class="shotcap">실제 출력 (well 확대) — 이 반사는 실제 결함이 아니라 정상 사진에서 <b>합성된 결과</b>입니다.
+        어디에 심었는지 알고 그리므로 GT 라벨(bbox)이 수작업 없이 따라옵니다</div>
     </div>
   </div>
 
@@ -495,6 +491,17 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
       <span class="fm"><b>개발보고서 — 빛반사 결함 합성기 (논문 형식)</b><small>HTML 문서 · A4 논문 레이아웃 · 실제 이미지 포함 · 새 탭에서 열립니다</small></span>
       <span class="fo">열어보기 ↗</span>
     </a>
+  </div>
+</div></section>
+
+<!-- S4b2 P2 실제 작동 -->
+<section class="full" id="p2s" data-dot="#0EA5A4"><div class="container">
+  <div class="sh"><h2>정합부터 배치 출력까지 — 실제 화면</h2><span class="s">Project 02 · In Action</span></div>
+  <div class="solo">
+    <div class="shotlbl reveal">① Setup — 파라메트릭 마스크 정합: 핀 4점(적색)·베이스라인(녹색)·well 폴리곤(주황)이 fisheye 곡률을 따라 정렬</div>
+    <img class="shot reveal" src="imgs/p2_mask.jpg" alt="파라메트릭 마스크 정합" loading="lazy">
+    <div class="shotlbl reveal" style="margin-top:1.3rem">② Generate — 레벨 분포에 따른 배치 합성: 같은 베이스에서 강도만 다르게 (상단 L3 · 하단 L5)</div>
+    <img class="shot reveal" src="imgs/p2_batch.jpg" alt="레벨별 배치 합성 결과" loading="lazy">
   </div>
 </div></section>
 
