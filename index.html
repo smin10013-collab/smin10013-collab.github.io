@@ -272,7 +272,7 @@ table.cert td img{width:1.2em;height:1.2em;vertical-align:-.2em}
 @media print{ .reveal{opacity:1;transform:none} }
 
 @media (max-width:860px){
-  .aboutgrid,.pgrid,.certgrid,.fixrow2{grid-template-columns:1fr}
+  .aboutgrid,.pgrid,.certgrid,.fixrow2,.guigrid{grid-template-columns:1fr !important}
   .spec4{grid-template-columns:1fr 1fr}
 
   .fixrow{grid-template-columns:1fr}
@@ -514,13 +514,16 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
 
 <!-- S4b2 P2 실제 작동 -->
 <section class="full" id="p2s" data-dot="#0EA5A4"><div class="container">
-  <div class="sh"><h2>정합부터 배치 출력까지 — 실제 화면</h2><span class="s">Project 02 · In Action</span></div>
-  <div class="solo">
-    <!-- TODO[P2 GUI] 최종 완성본 앱의 시작 화면 캡처가 준비되면 ①로 추가 (이전 시안 캡처는 최종본 아니라 제외 — 2026-08-26) -->
-    <div class="shotlbl reveal">① Setup — 파라메트릭 마스크 정합: 핀 4점(적색)·베이스라인(녹색)·well 폴리곤(주황)이 fisheye 곡률을 따라 정렬</div>
-    <img class="shot reveal" src="imgs/p2_mask.jpg" alt="파라메트릭 마스크 정합" loading="lazy">
-    <div class="shotlbl reveal" style="margin-top:1.3rem">② Generate — 레벨 분포에 따른 배치 합성: 같은 베이스에서 강도만 다르게 (상단 L3 · 하단 L5)</div>
-    <img class="shot reveal" src="imgs/p2_batch.jpg" alt="레벨별 배치 합성 결과" loading="lazy">
+  <div class="sh"><h2>시작부터 배치 생성까지 — 실제 앱 화면</h2><span class="s">Project 02 · In Action (v4)</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 1.6rem;max-width:62rem;margin:0 auto" class="guigrid">
+    <div class="reveal"><div class="shotlbl">① Setup — 정상 카트리지 사진 1장을 드롭</div>
+      <img class="shot" src="imgs/p2_gui1.jpg" alt="Setup 화면" loading="lazy"></div>
+    <div class="reveal"><div class="shotlbl">② Mask Calibration — 48 well 그리드를 Arc·Barrel 슬라이더로 정합</div>
+      <img class="shot" src="imgs/p2_gui2.jpg" alt="마스크 캘리브레이션 화면" loading="lazy"></div>
+    <div class="reveal"><div class="shotlbl">③ Generate — 레벨별 미리보기 확인 후 생성 (미리보기 = 실제 출력)</div>
+      <img class="shot" src="imgs/p2_gui3.jpg" alt="Generate 미리보기 화면" loading="lazy"></div>
+    <div class="reveal"><div class="shotlbl">④ Progress — L1~L5 분포대로 1,000장 배치 생성 (오류 0)</div>
+      <img class="shot" src="imgs/p2_gui4.jpg" alt="Progress 진행 화면" loading="lazy"></div>
   </div>
 </div></section>
 
