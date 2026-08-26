@@ -494,6 +494,24 @@ diff  = <span class="fn2">self_check</span>(html, steps) <span class="cm"># 생�
   </div>
 </div></section>
 
+<!-- S4b1 P2 패턴 라이브러리 (계기와 고민) -->
+<section class="full tint" id="p2lib" data-dot="#0EA5A4"><div class="container">
+  <div class="sh"><h2>재료의 기록 — 패턴 라이브러리</h2><span class="s">Project 02 · Pattern Library</span></div>
+  <div class="solo">
+    <div class="pglead reveal">실물 사진이 일곱 장뿐이라 반사를 '통째로' 쓸 수는 없었습니다. 그래서 사진 속 반사 하나하나를
+      <b>씨앗(패치)으로 잘라내 재사용</b>하기로 했습니다 — 이 라이브러리의 품질이 곧 합성 사실성의 상한이 되기 때문에,
+      재료를 모으고 검증하는 데 가장 많이 고민했습니다.</div>
+    <div class="shotlbl reveal">Phase 1 — 실물에서 씨앗 추출: 일곱 장에서 반사 패치 21개를 잘라내고,
+      각각을 alpha(빛의 강도 지도)로 정규화</div>
+    <img class="shot reveal" src="imgs/p2_lib_extract.jpg" alt="패턴 라이브러리 추출 패치" loading="lazy">
+    <div class="shotlbl reveal" style="margin-top:1.3rem">Phase 2 — 증강으로 다양성 확보: 패치 하나를
+      회전 ±15° · 스케일 0.8~1.2 · 강도 0.7~1.0 · 좌우 반전으로 변형 — 21개가 수백 가지 조합이 됩니다</div>
+    <img class="shot reveal" src="imgs/p2_lib_aug.jpg" alt="패치 증강 미리보기" loading="lazy">
+    <div class="shotcap">그래도 부족한 다양성은 생성 AI 패치로 보완하되, <b>모양 필터(장단비·채움률)로 실물다움을 검증</b>해
+      통과분만 들였습니다 — 수집 844개 중 213개만 라이브러리에 진입</div>
+  </div>
+</div></section>
+
 <!-- S4b2 P2 실제 작동 -->
 <section class="full" id="p2s" data-dot="#0EA5A4"><div class="container">
   <div class="sh"><h2>정합부터 배치 출력까지 — 실제 화면</h2><span class="s">Project 02 · In Action</span></div>
